@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "700",
     color: "#042C5C",
-    fontFamily: "Avenir",
   },
 
   checkbox: {
@@ -74,13 +73,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     marginTop: 20,
-    fontFamily: "Avenir",
   },
 
   signUpText: {
     color: "#042C5C",
     fontWeight: "700",
-    fontFamily: "Avenir",
   },
 });
 

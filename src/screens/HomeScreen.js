@@ -1,39 +1,35 @@
-import React, { useState, useCallback, useRef } from "react";
-import { View, StyleSheet, ImageBackground, Text, Image } from "react-native";
+import React from "react";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  Text,
+  Dimensions,
+  Image,
+} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import Carousel from "react-native-snap-carousel";
+import { SwiperFlatList } from "react-native-swiper-flatlist";
+import CarouselPagination from "../components/CarouselPagination";
+
+const spentData = [
+  {
+    id: 1,
+    amount: "$6,390",
+    amountOf: "$3.248",
+  },
+  {
+    id: 2,
+    amount: "$21,370",
+    amountOf: "$43.123",
+  },
+  {
+    id: 3,
+    amount: "$38",
+    amountOf: "$50",
+  },
+];
 
 const HomeScreen = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [carouselItems, setCarouselItems] = useState(spentData);
-  const ref = useRef(null);
-  const spentData = [
-    {
-      id: 1,
-      amount: "$6,390",
-      amountOf: "$3.248",
-    },
-    {
-      id: 2,
-      amount: "$21,370",
-      amountOf: "$43.123",
-    },
-    {
-      id: 3,
-      amount: "$38",
-      amountOf: "$50",
-    },
-  ];
-
-  const renderItem = useCallback(
-    ({ item, index }) => (
-      <View>
-        <Text>{item.amount}</Text>
-        <Text>{item.amountOf}</Text>
-      </View>
-    ),
-    []
-  );
   return (
     <View>
       <ImageBackground
@@ -52,15 +48,26 @@ const HomeScreen = () => {
             </Text>
             <Text style={styles.addBudgetButton}>Add Budget</Text>
           </View>
+          <Image
+            source={require("../../assets/images/credit-card.png")}
+            width={28}
+            height={24}
+          />
+          <Text style={styles.carouselTitle}>You Are Spent</Text>
           <View style={styles.spentCarouselContainer}>
-            <Carousel
-              layout="default"
-              ref={ref}
+            <SwiperFlatList
+              index={2}
+              showPagination
+              PaginationComponent={CarouselPagination}
               data={spentData}
-              sliderWidth={300}
-              itemWidth={300}
-              renderItem={renderItem}
-              onSnapToItem={(index) => setActiveIndex(index)}
+              renderItem={({ item }) => (
+                <View
+                  style={[styles.spentCarouselItem, { backgroundColor: item }]}
+                >
+                  <Text style={styles.spentAmount}>{item.amount}</Text>
+                  <Text style={styles.spentAmountOf}>of {item.amountOf}</Text>
+                </View>
+              )}
             />
           </View>
         </View>
@@ -69,6 +76,7 @@ const HomeScreen = () => {
   );
 };
 
+const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   mainView: {
     paddingHorizontal: 25,
@@ -90,13 +98,13 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     flexDirection: "row",
     flexWrap: "nowrap",
+    marginBottom: 25,
   },
 
   title: {
     color: "#fff",
     fontSize: 20,
     fontWeight: "700",
-    fontFamily: "Avenir",
   },
 
   spentContainer: {
@@ -130,8 +138,37 @@ const styles = StyleSheet.create({
 
   spentCarouselContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
+    backgroundColor: "white",
+  },
+
+  spentCarouselItem: {
+    width,
+    justifyContent: "flex-start",
+    marginLeft: -43,
+    height: 100,
+  },
+
+  spentAmount: {
+    fontSize: 30,
+    fontWeight: "900",
+    textAlign: "center",
+    color: "#042C5C",
+    marginBottom: 5,
+  },
+
+  spentAmountOf: {
+    fontSize: 13,
+    textAlign: "center",
+    color: "#77869E",
+  },
+
+  carouselTitle: {
+    textAlign: "center",
+    fontSize: 13,
+    color: "#77869E",
+    marginBottom: 10,
+    fontWeight: "600",
+    marginTop: 20,
   },
 });
 

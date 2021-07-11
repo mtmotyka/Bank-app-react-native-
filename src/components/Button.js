@@ -5,20 +5,28 @@ import { Roboto_400Regular } from "@expo-google-fonts/roboto";
 const Button = () => {
   return (
     <View>
-      <TouchableOpacity style={styles.button}>Login</TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    fontFamily: Roboto_400Regular,
     textAlign: "center",
     backgroundColor: "#0047CC",
     color: "#fff",
-    borderRadius: 10,
+    borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 15,
+  },
+
+  buttonText: {
+    color: "#fff",
+    fontFamily: "Avenir",
+    fontWeight: "700",
+    fontSize: 16,
   },
 });
 

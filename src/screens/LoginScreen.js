@@ -54,13 +54,14 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   mainView: {
     paddingHorizontal: 25,
+    paddingTop: 100,
   },
 
   loginText: {
     fontSize: 32,
-    fontWeight: 900,
+    fontWeight: "700",
     color: "#042C5C",
-    fontFamily: Roboto_400Regular,
+    fontFamily: "Avenir",
   },
 
   checkbox: {
@@ -73,11 +74,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     marginTop: 20,
+    fontFamily: "Avenir",
   },
 
   signUpText: {
     color: "#042C5C",
-    fontWeight: 700,
+    fontWeight: "700",
+    fontFamily: "Avenir",
   },
 });
 

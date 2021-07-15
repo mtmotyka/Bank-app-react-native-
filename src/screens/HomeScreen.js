@@ -4,79 +4,80 @@ import {
   StyleSheet,
   ImageBackground,
   Text,
-  Dimensions,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { SwiperFlatList } from "react-native-swiper-flatlist";
-import CarouselPagination from "../components/CarouselPagination";
-
-const spentData = [
-  {
-    id: 1,
-    amount: "$6,390",
-    amountOf: "$3.248",
-  },
-  {
-    id: 2,
-    amount: "$21,370",
-    amountOf: "$43.123",
-  },
-  {
-    id: 3,
-    amount: "$38",
-    amountOf: "$50",
-  },
-];
+import { useFonts } from "expo-font";
+import Carousel from "../components/Carousel";
+import SectionHeading from "../components/SectionHeading";
 
 const HomeScreen = () => {
-  return (
-    <View>
-      <ImageBackground
-        source={require("../../assets/images/home-bg.png")}
-        style={styles.bgImage}
-      />
-      <View style={styles.mainView}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.title}>Your Budgets</Text>
-          <Icon name="notifications" size={22} color="#fff" />
-        </View>
-        <View style={styles.spentContainer}>
-          <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>
-              for <Text style={styles.boldedText}>Axess Platinum</Text> Card
-            </Text>
-            <Text style={styles.addBudgetButton}>Add Budget</Text>
+  let [fontsLoaded] = useFonts({
+    Avenir: require("../../assets/fonts/AvenirLTStd-Roman.ttf"),
+    AvenirMedium: require("../../assets/fonts/AvenirLTStd-Medium.ttf"),
+    AvenirBlack: require("../../assets/fonts/AvenirLTStd-Black.ttf"),
+    AvenirHeavy: require("../../assets/fonts/AvenirLTStd-Heavy.ttf"),
+  });
+  if (!fontsLoaded) {
+    return <Text>Font loading...</Text>;
+  } else {
+    return (
+      <View>
+        <ImageBackground
+          source={require("../../assets/images/home-bg.png")}
+          style={styles.bgImage}
+        />
+        <View style={styles.mainView}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.title}>Your Budgets</Text>
+            <Icon name="notifications" size={22} color="#fff" />
           </View>
-          <Image
-            source={require("../../assets/images/credit-card.png")}
-            width={28}
-            height={24}
-          />
-          <Text style={styles.carouselTitle}>You Are Spent</Text>
-          <View style={styles.spentCarouselContainer}>
-            <SwiperFlatList
-              index={2}
-              showPagination
-              PaginationComponent={CarouselPagination}
-              data={spentData}
-              renderItem={({ item }) => (
-                <View
-                  style={[styles.spentCarouselItem, { backgroundColor: item }]}
-                >
-                  <Text style={styles.spentAmount}>{item.amount}</Text>
-                  <Text style={styles.spentAmountOf}>of {item.amountOf}</Text>
-                </View>
-              )}
-            />
+          <View style={styles.spentContainer}>
+            <View style={styles.cardHeader}>
+              <Text style={styles.cardTitle}>
+                for <Text style={styles.boldedText}>Axess Platinum</Text> Card
+              </Text>
+              <Text style={styles.addBudgetButton}>+ Add Budget</Text>
+            </View>
+            <View style={{ alignItems: "center" }}>
+              <Image
+                source={require("../../assets/images/credit-card.png")}
+                width={28}
+                height={24}
+                style={styles.creditCardImg}
+              />
+            </View>
+            <Text style={styles.carouselTitle}>You Are Spent</Text>
+            <View style={styles.carouselContainer}>
+              <Image
+                source={require("../../assets/images/chart-elipse.png")}
+                width={262}
+                height={180}
+                style={styles.chartElipse}
+              />
+              <Carousel />
+            </View>
+          </View>
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity style={styles.blueButton}>
+              <Icon name="cash-outline" size={21} color="#0047CC" />
+              <Text style={styles.buttonText}>Send Money</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.blueButton}>
+              <Icon name="calculator-outline" size={21} color="#0047CC" />
+              <Text style={styles.buttonText}>Calculation</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <SectionHeading>Transactions</SectionHeading>
           </View>
         </View>
       </View>
-    </View>
-  );
+    );
+  }
 };
 
-const { width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   mainView: {
     paddingHorizontal: 25,
@@ -105,61 +106,40 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
     fontWeight: "700",
+    fontFamily: "Avenir",
+  },
+
+  boldedText: {
+    color: "#042C5C",
+    fontFamily: "AvenirBlack",
   },
 
   spentContainer: {
     backgroundColor: "#fff",
     paddingVertical: 16,
     paddingHorizontal: 16,
-    borderRadius: 10,
+    borderRadius: 15,
   },
 
   cardHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
+    fontFamily: "Avenir",
+    marginBottom: 85,
   },
 
   cardTitle: {
     color: "#77869E",
     fontSize: 13,
-  },
-
-  boldedText: {
-    color: "#042C5C",
-    fontWeight: "900",
+    fontFamily: "Avenir",
   },
 
   addBudgetButton: {
     color: "#0047CC",
     fontSize: 13,
-    fontWeight: "900",
-  },
-
-  spentCarouselContainer: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-
-  spentCarouselItem: {
-    width,
-    justifyContent: "flex-start",
-    marginLeft: -43,
-    height: 100,
-  },
-
-  spentAmount: {
-    fontSize: 30,
-    fontWeight: "900",
-    textAlign: "center",
-    color: "#042C5C",
-    marginBottom: 5,
-  },
-
-  spentAmountOf: {
-    fontSize: 13,
-    textAlign: "center",
-    color: "#77869E",
+    fontFamily: "Avenir",
+    fontWeight: "700",
   },
 
   carouselTitle: {
@@ -167,8 +147,45 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#77869E",
     marginBottom: 10,
-    fontWeight: "600",
+    fontWeight: "700",
     marginTop: 20,
+  },
+
+  carouselContainer: {
+    justifyContent: "center",
+    flexDirection: "row",
+    position: "relative",
+  },
+
+  chartElipse: {
+    position: "absolute",
+    top: -120,
+    zIndex: 10,
+  },
+
+  buttonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: 25,
+  },
+
+  buttonText: {
+    color: "#0047CC",
+    fontSize: 13,
+    fontFamily: "AvenirHeavy",
+    marginLeft: 15,
+  },
+
+  blueButton: {
+    backgroundColor: "#DFE7F5",
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    width: "45%",
   },
 });
 

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     color: "#042C5C",
     fontFamily: "AvenirHeavy",
     fontWeight: "900",
-    marginBottom: 20,
+    marginBottom: 10,
   },
 });
 

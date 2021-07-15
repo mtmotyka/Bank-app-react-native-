@@ -6,11 +6,13 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import Carousel from "../components/Carousel";
 import SectionHeading from "../components/SectionHeading";
+import ExpenseTile from "../components/ExpenseTile";
 
 const HomeScreen = () => {
   let [fontsLoaded] = useFonts({
@@ -23,7 +25,7 @@ const HomeScreen = () => {
     return <Text>Font loading...</Text>;
   } else {
     return (
-      <View>
+      <ScrollView>
         <ImageBackground
           source={require("../../assets/images/home-bg.png")}
           style={styles.bgImage}
@@ -71,9 +73,39 @@ const HomeScreen = () => {
           </View>
           <View>
             <SectionHeading>Transactions</SectionHeading>
+            <View>
+              <ExpenseTile
+                type="expense"
+                shopName="Shell"
+                date="17 Monday June"
+                amount={35.88}
+                icon={<Icon name="car-outline" size={22} color="#fff" />}
+              />
+              <ExpenseTile
+                type="expense"
+                shopName="Amazon"
+                date="22 Wednesday June"
+                amount={23.12}
+                icon={<Icon name="cart-outline" size={22} color="#fff" />}
+              />
+              <ExpenseTile
+                type="income"
+                shopName="Amazon"
+                date="5 Saturday May"
+                amount={120.0}
+                icon={<Icon name="cash-outline" size={22} color="#fff" />}
+              />
+              <ExpenseTile
+                type="expense"
+                shopName="Bus Ticket"
+                date="12 Sunday January"
+                amount={2.12}
+                icon={<Icon name="bus-outline" size={22} color="#fff" />}
+              />
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 };
@@ -82,6 +114,7 @@ const styles = StyleSheet.create({
   mainView: {
     paddingHorizontal: 25,
     paddingTop: 80,
+    paddingBottom: 100,
   },
 
   bgImage: {

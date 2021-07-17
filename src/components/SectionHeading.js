@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 
 const SectionHeading = ({ children }) => {
   let [fontsLoaded] = useFonts({
-    AvenirHeavy: require("../../assets/fonts/AvenirLTStd-Heavy.ttf"),
+    AvenirHeavy: require("../assets/fonts/AvenirLTStd-Heavy.ttf"),
   });
   if (!fontsLoaded) {
     return <Text>Font loading...</Text>;

@@ -18,10 +18,10 @@ const ExpenseTile = ({ shopName, date, icon, type, amount }) => {
     style: { marginVertical: 7 },
   };
   let [fontsLoaded] = useFonts({
-    Avenir: require("../../assets/fonts/AvenirLTStd-Roman.ttf"),
-    AvenirMedium: require("../../assets/fonts/AvenirLTStd-Medium.ttf"),
-    AvenirBlack: require("../../assets/fonts/AvenirLTStd-Black.ttf"),
-    AvenirHeavy: require("../../assets/fonts/AvenirLTStd-Heavy.ttf"),
+    Avenir: require("../assets/fonts/AvenirLTStd-Roman.ttf"),
+    AvenirMedium: require("../assets/fonts/AvenirLTStd-Medium.ttf"),
+    AvenirBlack: require("../assets/fonts/AvenirLTStd-Black.ttf"),
+    AvenirHeavy: require("../assets/fonts/AvenirLTStd-Heavy.ttf"),
   });
   if (!fontsLoaded) {
     return <Text>Font loading...</Text>;

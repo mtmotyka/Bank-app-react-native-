@@ -10,7 +10,6 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
-
 const AddButton = ({ children, onPress }) => (
   <TouchableOpacity
     style={{ top: -30, justifyContent: "center", alignItems: "center" }}

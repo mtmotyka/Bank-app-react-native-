@@ -16,10 +16,10 @@ import ExpenseTile from "../components/ExpenseTile";
 
 const HomeScreen = () => {
   let [fontsLoaded] = useFonts({
-    Avenir: require("../../assets/fonts/AvenirLTStd-Roman.ttf"),
-    AvenirMedium: require("../../assets/fonts/AvenirLTStd-Medium.ttf"),
-    AvenirBlack: require("../../assets/fonts/AvenirLTStd-Black.ttf"),
-    AvenirHeavy: require("../../assets/fonts/AvenirLTStd-Heavy.ttf"),
+    Avenir: require("../assets/fonts/AvenirLTStd-Roman.ttf"),
+    AvenirMedium: require("../assets/fonts/AvenirLTStd-Medium.ttf"),
+    AvenirBlack: require("../assets/fonts/AvenirLTStd-Black.ttf"),
+    AvenirHeavy: require("../assets/fonts/AvenirLTStd-Heavy.ttf"),
   });
   if (!fontsLoaded) {
     return <Text>Font loading...</Text>;
@@ -27,7 +27,7 @@ const HomeScreen = () => {
     return (
       <ScrollView>
         <ImageBackground
-          source={require("../../assets/images/home-bg.png")}
+          source={require("../assets/images/home-bg.png")}
           style={styles.bgImage}
         />
         <View style={styles.mainView}>
@@ -44,7 +44,7 @@ const HomeScreen = () => {
             </View>
             <View style={{ alignItems: "center" }}>
               <Image
-                source={require("../../assets/images/credit-card.png")}
+                source={require("../assets/images/credit-card.png")}
                 width={28}
                 height={24}
                 style={styles.creditCardImg}
@@ -53,7 +53,7 @@ const HomeScreen = () => {
             <Text style={styles.carouselTitle}>You Are Spent</Text>
             <View style={styles.carouselContainer}>
               <Image
-                source={require("../../assets/images/chart-elipse.png")}
+                source={require("../assets/images/chart-elipse.png")}
                 width={262}
                 height={180}
                 style={styles.chartElipse}
